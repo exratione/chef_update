@@ -25,6 +25,7 @@ that was just installed for the real provisioning.
     # Update the version of chef on the guest machine. This has to be a separate
     # provision statement issued before the real provisioning begins.
     config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "./cookbooks"
       chef.run_list = [
         "recipe[chef-update]"
       ]
