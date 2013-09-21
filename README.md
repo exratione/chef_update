@@ -27,7 +27,7 @@ that was just installed for the real provisioning.
     config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "./cookbooks"
       chef.run_list = [
-        "recipe[chef-update]"
+        "recipe[chef_update]"
       ]
       chef.json = {
         "chef_update" => {
