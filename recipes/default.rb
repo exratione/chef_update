@@ -2,20 +2,25 @@
 # Ensure that Chef is updated.
 #
 
-# Check the current Chef version.
-#
-# Return true if it is at least as recent as the provided major.minor values.
+# Check the current Chef version. Return true if it is at least as recent as the
+# provided major.minor values.
 def version_sufficient(major, minor)
   major = Integer(major)
   minor = Integer(minor)
-  currentMajor = Chef::Version.new(Chef::VERSION).major;
-  currentMinor = Chef::Version.new(Chef::VERSION).minor;
-  if currentMajor < major
+  begin
+    currentMajor = Chef::Version.new(Chef::VERSION).major;
+    currentMinor = Chef::Version.new(Chef::VERSION).minor;
+    if currentMajor < major
+      return false
+    elsif currentMajor == major && currentMinor < minor
+      return false
+    else
+      return true
+    end
+  rescue
+    # No version of Chef installed. Since this is a cookbook, this shouldn't
+    # happen - we wouldn't be here without Chef to run the cookbook.
     return false
-  elsif currentMajor == major && currentMinor < minor
-    return false;
-  else
-    return true;
   end
 end
 

@@ -3,7 +3,7 @@ maintainer        'Reason'
 maintainer_email  'reason@exratione.com'
 license           'MIT'
 description       'Update the version of Chef present on the server.'
-version           '0.0.1'
+version           '0.0.2'
 recipe            'chef_update', 'Update the version of Chef.'
 
 %w{ redhat centos suse scientific fedora debian ubuntu arch freebsd amazon }.each do |os|
